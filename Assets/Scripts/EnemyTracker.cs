@@ -10,8 +10,10 @@ public class EnemyTracker : MonoBehaviour
     void Start()
     {
         //2. Add operation (Create)
-        activeEnemies.Add("Fire Sword");
-        activeEnemies.Add("Health Potion");
+        activeEnemies.Add("Goblin");
+        activeEnemies.Add("Skeletor");
+        activeEnemies.Add("Dark Minion");
+        activeEnemies.Add("Chaos Knight");
         UpdateUI();
     }
 
@@ -60,7 +62,7 @@ public class EnemyTracker : MonoBehaviour
         enemyTrackerText.text = "Enemy Tracker: \n";
         for (int i = 0; i < activeEnemies.Count; i++)
         {
-            enemyTrackerText.text += $"- {activeEnemies[i]}\n";
+            enemyTrackerText.text += $"{activeEnemies[i]}\n";
         }
     }
 }
