@@ -17,11 +17,11 @@ public class EnemyTracker : MonoBehaviour
         UpdateUI();
     }
 
-    // Adds an item to the player's inventory
+    // Adds an enemy to the list and updates the UI
     public void AddTarget(string enemyName)
     {
         activeEnemies.Add(enemyName);
-        //playerItems.Clear();
+        //activeEnemies.Clear();
         UpdateUI();
     }
 
@@ -41,20 +41,6 @@ public class EnemyTracker : MonoBehaviour
         UpdateUI();
     }
 
-    //Drops the item when player dies
-    public void RemoveItemDrop()
-    {
-        //Loop Backwards from end to 0
-        for (int i = activeEnemies.Count - 1; i >= 0; i--)
-        {
-            if (activeEnemies[i].Contains("Potion"))
-            {
-                activeEnemies.RemoveAt(i);
-                Debug.Log("You have taken damage! 1 item is dropped!!! :(");
-            }
-            UpdateUI();
-        }
-    }
     // Update is called once per frame
     private void UpdateUI()
     {
