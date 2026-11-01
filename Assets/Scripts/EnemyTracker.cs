@@ -1,56 +1,70 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+
 public class EnemyTracker : MonoBehaviour
 {
-    //1. Generic List Initialization
+    //1. Generic List Inititalization
     private List<string> activeEnemies = new List<string>();
-    public TextMeshProUGUI enemyTrackerText;
 
-    void Start()
+    [SerializeField] private TMP_Text enemyListText;
+
+    private int enemyCounter = 1;
+
+    private void Start()
     {
-        //2. Add operation (Create)
-        activeEnemies.Add("Megatron");
-        activeEnemies.Add("Skeletor");
-        activeEnemies.Add("Evil Minion");
-        activeEnemies.Add("Chaos Knight");
-        activeEnemies.Add("Front Man");
-        activeEnemies.Add("Thanos");
-        UpdateUI();
+        UpdateEnemyUI();
     }
 
-    // Adds an enemy to the list and updates the UI
-    public void AddTarget(string enemyName)
+    //2. Add Operation (Create)
+    public void AddTarget()
     {
+        string enemyName = "Enemy " + enemyCounter++;
         activeEnemies.Add(enemyName);
-        //activeEnemies.Clear();
-        UpdateUI();
+
+        UpdateEnemyUI();
     }
 
-    // Remove operation (Delete)
-    public void DefeatEnemy(string enemyName)
+    //3. Remove Operation (Delete)
+    public void DefeatEnemy()
     {
-        //3. REMOVE
-        if (activeEnemies.Remove(enemyName))
+        if (activeEnemies.Count > 0)
         {
-            Debug.Log($"Removed {enemyName} from enemy tracker");
+            string enemyToRemove = activeEnemies[0];
+
+            if(activeEnemies.Contains(enemyToRemove))
+            {
+                activeEnemies.Remove(enemyToRemove);
+            }
+
+            UpdateEnemyUI();
         }
         else
         {
-            Debug.LogWarning($"Could not {enemyName} to remove");
+            Debug.Log("No enemies to remove.");
         }
-
-        UpdateUI();
     }
 
-    // Update is called once per frame
-    private void UpdateUI()
+    //4. Read Operation
+    private void UpdateEnemyUI()
     {
-        //UPDATE
-        enemyTrackerText.text = "Enemy Tracker: \n";
+        enemyListText.text = "ENEMY TRACKER\n\n";
+
         for (int i = 0; i < activeEnemies.Count; i++)
         {
-            enemyTrackerText.text += $"{activeEnemies[i]}\n";
+            enemyListText.text += $"{activeEnemies[i]}\n";
         }
+
+        enemyListText.text += $"\nTotal Enemies: {activeEnemies.Count}";
+    }
+
+    //4. Clear Operation
+    public void ClearEnemy()
+    {
+        activeEnemies.Clear();
+
+        UpdateEnemyUI();
+
+        Debug.Log("Enemy cleared.");
     }
 }
