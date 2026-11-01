@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 public class EnemyTracker : MonoBehaviour
 {
-    //1. Generic List Declaration
+    //1. Generic List Initialization
     private List<string> activeEnemies = new List<string>();
     public TextMeshProUGUI enemyTrackerText;
 
     void Start()
     {
         //2. Add operation (Create)
-        activeEnemies.Add("Goblin");
+        activeEnemies.Add("Megatron");
         activeEnemies.Add("Skeletor");
-        activeEnemies.Add("Dark Minion");
+        activeEnemies.Add("Evil Minion");
         activeEnemies.Add("Chaos Knight");
+        activeEnemies.Add("Front Man");
+        activeEnemies.Add("Thanos");
         UpdateUI();
     }
 
